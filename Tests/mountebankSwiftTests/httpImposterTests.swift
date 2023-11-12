@@ -6,6 +6,7 @@ final class httpImposterTests: XCTestCase {
     var requestHelper: RequestHelper?
     let testPort: Int = 2526
     let baseRequestPath: String = "http://localhost"
+    let relativeRequestPath = "/v1/test"
     
     override func setUp() async throws {
         mountebankClient = MountebankClient(mountebankUrl: "http://localhost:2525")
@@ -17,7 +18,6 @@ final class httpImposterTests: XCTestCase {
     }
     
     func testCreateHttpImposter() async throws{
-        let relativeRequestPath = "/v1/test"
         let predicateHttpFields = HttpFields(path: relativeRequestPath, method: .GET)
         let equalsPredicate = EqualsPredicate(equals: predicateHttpFields)
         let predicates = [equalsPredicate]
@@ -46,5 +46,31 @@ final class httpImposterTests: XCTestCase {
         let actualResponse = try JSONDecoder().decode([Int].self, from: responseData!)
         
         XCTAssertEqual(expectedResponse, actualResponse)
+    }
+    
+    func testCreateHttpImposterWithRequestBody() async throws {
+        let exampleRequestBody = SimpleRequestBody(exampleInt: 2, exampleBool: false, exampleString: "test")
+        let jsonRequestData = try JSONEncoder().encode(exampleRequestBody)
+        let jsonRequestBodyString = String(data: jsonRequestData, encoding: .utf8)
+        let predicateHttpFields = HttpFields(path: relativeRequestPath, method: .POST, body: jsonRequestBodyString)
+        let equalsPredicate = EqualsPredicate(equals: predicateHttpFields)
+        let predicates = [equalsPredicate]
+        
+        
+        let expectedStatusCode: Int = 201
+        let httpResponseFields = HttpResponseFields(statusCode: expectedStatusCode)
+        let response = IsResponse(isResponse: httpResponseFields)
+        let responses = [response]
+        let httpStub = HttpStub(predicates: predicates, responses: responses)
+        let httpStubs = [httpStub]
+        try await mountebankClient?.CreateHttpImposter(port: testPort, stubs: httpStubs)
+        
+        let requestPath = "\(baseRequestPath):\(testPort)\(relativeRequestPath)"
+
+        let (_, responseCode) = try await requestHelper!.MakeRequestToMockAsync(requestPath: requestPath, method: .POST, requestBodyData: jsonRequestData)!
+        XCTAssertNotNil(responseCode)
+        
+        XCTAssertEqual(expectedStatusCode, responseCode)
+        
     }
 }

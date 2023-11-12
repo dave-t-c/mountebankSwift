@@ -11,7 +11,7 @@ import XCTest
 
 class RequestHelper {
     
-    func MakeRequestToMockAsync(requestPath: String, method: HttpMethod) async throws -> (Data?, Int?)? {
+    func MakeRequestToMockAsync(requestPath: String, method: HttpMethod, requestBodyData: Data? = nil) async throws -> (Data?, Int?)? {
         
         guard let url = URL(string: requestPath) else {
             XCTFail("Unable to create a URL for path: \(requestPath)")
@@ -20,6 +20,7 @@ class RequestHelper {
         
         var request = URLRequest(url: url)
         request.httpMethod = String(describing: method)
+        request.httpBody = requestBodyData
         
         print("Calling \(request.httpMethod!) \(request.url!)")
         
