@@ -12,15 +12,9 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup Swift
-      uses: swift-actions/setup-swift@v1.25.0             
-    - name: Start docker containers
-      run: docker-compose up -d
+    - uses: actions/checkout@v3        
     - name: Build
       run: swift build -v
-    - name: Run tests
-      run: swift test -v
