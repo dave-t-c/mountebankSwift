@@ -7,11 +7,6 @@
 
 import Foundation
 
-// Running on ubuntu requires the following import
-#if canImport(FoundationNetworking)
-import FoundationNetworking
-#endif
-
 class MountebankRequestWrapper {
     var mountebankUrl: String
     
