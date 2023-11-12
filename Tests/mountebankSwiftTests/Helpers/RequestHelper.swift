@@ -5,6 +5,11 @@
 //  Created by David Cook on 11/11/2023.
 //
 
+// Running on ubuntu requires the following import
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
+
 import Foundation
 import XCTest
 @testable import mountebankSwift
