@@ -11,4 +11,5 @@ struct TestConfiguration: Decodable {
     let baseRequestPath: String
     let relativeRequestPath: String
     let mountebankUrl: String
+    let defaultTestPort: Int
 }

@@ -4,19 +4,16 @@ import XCTest
 final class HttpImposterTests: XCTestCase {
     var mountebankClient: MountebankClient?
     var requestHelper: RequestHelper?
-    let testPort: Int = 2526
     var configuration: TestConfiguration?
     
     override func setUp() async throws {
-        let testConfigurationPath = Bundle.module.url(forResource: "TestConfiguration", withExtension: "json", subdirectory: "TestResources")
-        let testConfigurationData = try Data(contentsOf: URL(fileURLWithPath: testConfigurationPath!.path()))
-        configuration = try JSONDecoder().decode(TestConfiguration.self, from: testConfigurationData)
+        configuration = try ConfigurationHelper.importTestConfiguration()
         mountebankClient = MountebankClient(mountebankUrl: configuration!.mountebankUrl)
         requestHelper = RequestHelper()
     }
     
     override func tearDown() async throws{
-        try await mountebankClient?.deleteImposterAsync(port: testPort)
+        try await mountebankClient?.deleteImposterAsync(port: configuration!.defaultTestPort)
     }
     
     func testCreateHttpImposter() async throws{
@@ -35,9 +32,9 @@ final class HttpImposterTests: XCTestCase {
         let responses = [response]
         let httpStub = HttpStub(predicates: predicates, responses: responses)
         let httpStubs = [httpStub]
-        try await mountebankClient?.createHttpImposterAsync(port: testPort, stubs: httpStubs)
+        try await mountebankClient?.createHttpImposterAsync(port: configuration!.defaultTestPort, stubs: httpStubs)
         
-        let requestPath = "\(configuration!.baseRequestPath):\(testPort)\(configuration!.relativeRequestPath)"
+        let requestPath = "\(configuration!.baseRequestPath):\(configuration!.defaultTestPort)\(configuration!.relativeRequestPath)"
 
         let (responseData, responseCode) = try await requestHelper!.makeRequestToMockAsync(requestPath: requestPath, method: .GET)!
         XCTAssertNotNil(responseData)
@@ -65,9 +62,9 @@ final class HttpImposterTests: XCTestCase {
         let responses = [response]
         let httpStub = HttpStub(predicates: predicates, responses: responses)
         let httpStubs = [httpStub]
-        try await mountebankClient?.createHttpImposterAsync(port: testPort, stubs: httpStubs)
+        try await mountebankClient?.createHttpImposterAsync(port: configuration!.defaultTestPort, stubs: httpStubs)
         
-        let requestPath = "\(configuration!.baseRequestPath):\(testPort)\(configuration!.relativeRequestPath)"
+        let requestPath = "\(configuration!.baseRequestPath):\(configuration!.defaultTestPort)\(configuration!.relativeRequestPath)"
 
         let (_, responseCode) = try await requestHelper!.makeRequestToMockAsync(requestPath: requestPath, method: .POST, requestBodyData: jsonRequestData)!
         XCTAssertNotNil(responseCode)
