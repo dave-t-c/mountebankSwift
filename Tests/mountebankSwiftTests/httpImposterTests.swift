@@ -5,20 +5,19 @@ final class httpImposterTests: XCTestCase {
     var mountebankClient: MountebankClient?
     var requestHelper: RequestHelper?
     let testPort: Int = 2526
-    let baseRequestPath: String = "http://localhost"
-    let relativeRequestPath = "/v1/test"
+    let configuration: TestConfiguration = TestConfiguration()
     
     override func setUp() async throws {
-        mountebankClient = MountebankClient(mountebankUrl: "http://localhost:2525")
+        mountebankClient = MountebankClient(mountebankUrl: configuration.mountebankUrl)
         requestHelper = RequestHelper()
     }
     
     override func tearDown() async throws{
-        try await mountebankClient?.DeleteImposter(port: testPort)
+        try await mountebankClient?.deleteImposterAsync(port: testPort)
     }
     
     func testCreateHttpImposter() async throws{
-        let predicateHttpFields = HttpFields(path: relativeRequestPath, method: .GET)
+        let predicateHttpFields = HttpFields(path: configuration.relativeRequestPath, method: .GET)
         let equalsPredicate = EqualsPredicate(equals: predicateHttpFields)
         let predicates = [equalsPredicate]
         
@@ -33,9 +32,9 @@ final class httpImposterTests: XCTestCase {
         let responses = [response]
         let httpStub = HttpStub(predicates: predicates, responses: responses)
         let httpStubs = [httpStub]
-        try await mountebankClient?.CreateHttpImposter(port: testPort, stubs: httpStubs)
+        try await mountebankClient?.createHttpImposterAsync(port: testPort, stubs: httpStubs)
         
-        let requestPath = "\(baseRequestPath):\(testPort)\(relativeRequestPath)"
+        let requestPath = "\(configuration.baseRequestPath):\(testPort)\(configuration.relativeRequestPath)"
 
         let (responseData, responseCode) = try await requestHelper!.MakeRequestToMockAsync(requestPath: requestPath, method: .GET)!
         XCTAssertNotNil(responseData)
@@ -63,7 +62,7 @@ final class httpImposterTests: XCTestCase {
         let responses = [response]
         let httpStub = HttpStub(predicates: predicates, responses: responses)
         let httpStubs = [httpStub]
-        try await mountebankClient?.CreateHttpImposter(port: testPort, stubs: httpStubs)
+        try await mountebankClient?.createHttpImposterAsync(port: testPort, stubs: httpStubs)
         
         let requestPath = "\(baseRequestPath):\(testPort)\(relativeRequestPath)"
 

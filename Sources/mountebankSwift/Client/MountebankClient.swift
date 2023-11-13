@@ -9,7 +9,7 @@ import Foundation
 
 /// Mountebank client for setting up imposters
 class MountebankClient {
-    var mountebankUrl = "http://localhost:2525"
+    var mountebankUrl: String
     var requestWrapper: MountebankRequestWrapper
     
     init(mountebankUrl: String) {
@@ -17,13 +17,13 @@ class MountebankClient {
         self.requestWrapper = MountebankRequestWrapper(mountebankUrl: mountebankUrl)
     }
     
-    func CreateHttpImposter(port: Int, stubs: [HttpStub]) async throws -> Void {
+    func createHttpImposterAsync(port: Int, stubs: [HttpStub]) async throws -> Void {
         let httpImposter = HttpImposter(port: port, stubs: stubs)
         print("Creating new HTTP imposter on port \(port)")
         try await self.requestWrapper.CreateImposterAsync(imposter: httpImposter)
     }
     
-    func DeleteImposter(port: Int) async throws -> Void{
+    func deleteImposterAsync(port: Int) async throws -> Void{
         try await self.requestWrapper.DeleteImposterAsync(port: port)
     }
 }
