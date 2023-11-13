@@ -1,7 +1,7 @@
 import XCTest
 @testable import mountebankSwift
 
-final class httpImposterTests: XCTestCase {
+final class HttpImposterTests: XCTestCase {
     var mountebankClient: MountebankClient?
     var requestHelper: RequestHelper?
     let testPort: Int = 2526
@@ -9,8 +9,8 @@ final class httpImposterTests: XCTestCase {
     
     override func setUp() async throws {
         let testConfigurationPath = Bundle.module.url(forResource: "TestConfiguration", withExtension: "json", subdirectory: "TestResources")
-        let data = try Data(contentsOf: URL(fileURLWithPath: testConfigurationPath!.path()))
-        configuration = try JSONDecoder().decode(TestConfiguration.self, from: data)
+        let testConfigurationData = try Data(contentsOf: URL(fileURLWithPath: testConfigurationPath!.path()))
+        configuration = try JSONDecoder().decode(TestConfiguration.self, from: testConfigurationData)
         mountebankClient = MountebankClient(mountebankUrl: configuration!.mountebankUrl)
         requestHelper = RequestHelper()
     }
@@ -39,7 +39,7 @@ final class httpImposterTests: XCTestCase {
         
         let requestPath = "\(configuration!.baseRequestPath):\(testPort)\(configuration!.relativeRequestPath)"
 
-        let (responseData, responseCode) = try await requestHelper!.MakeRequestToMockAsync(requestPath: requestPath, method: .GET)!
+        let (responseData, responseCode) = try await requestHelper!.makeRequestToMockAsync(requestPath: requestPath, method: .GET)!
         XCTAssertNotNil(responseData)
         XCTAssertNotNil(responseCode)
         
@@ -69,7 +69,7 @@ final class httpImposterTests: XCTestCase {
         
         let requestPath = "\(configuration!.baseRequestPath):\(testPort)\(configuration!.relativeRequestPath)"
 
-        let (_, responseCode) = try await requestHelper!.MakeRequestToMockAsync(requestPath: requestPath, method: .POST, requestBodyData: jsonRequestData)!
+        let (_, responseCode) = try await requestHelper!.makeRequestToMockAsync(requestPath: requestPath, method: .POST, requestBodyData: jsonRequestData)!
         XCTAssertNotNil(responseCode)
         
         XCTAssertEqual(expectedStatusCode, responseCode)

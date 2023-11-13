@@ -14,7 +14,7 @@ class MountebankRequestWrapper {
         self.mountebankUrl = mountebankUrl
     }
     
-    func DeleteImposterAsync(port: Int) async throws -> Void {
+    func deleteImposterAsync(port: Int) async throws -> Void {
         guard let url = URL(string: "\(self.mountebankUrl)/imposters/\(port)") else {
             return
         }
@@ -34,7 +34,7 @@ class MountebankRequestWrapper {
         }
     }
     
-    func CreateImposterAsync(imposter: HttpImposter) async throws -> Void {
+    func dreateImposterAsync(imposter: HttpImposter) async throws -> Void {
         guard let url = URL(string: "\(self.mountebankUrl)/imposters") else {
             return
         }
