@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct TestConfiguration {
-    let baseRequestPath: String = "http://localhost"
-    let relativeRequestPath: String = "/v1/test"
-    let mountebankUrl: String = "http://localhost:2525"
+struct TestConfiguration: Decodable {
+    let baseRequestPath: String
+    let relativeRequestPath: String
+    let mountebankUrl: String
 }

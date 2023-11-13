@@ -5,10 +5,13 @@ final class httpImposterTests: XCTestCase {
     var mountebankClient: MountebankClient?
     var requestHelper: RequestHelper?
     let testPort: Int = 2526
-    let configuration: TestConfiguration = TestConfiguration()
+    var configuration: TestConfiguration?
     
     override func setUp() async throws {
-        mountebankClient = MountebankClient(mountebankUrl: configuration.mountebankUrl)
+        let testConfigurationPath = Bundle.module.url(forResource: "TestConfiguration", withExtension: "json", subdirectory: "TestResources")
+        let data = try Data(contentsOf: URL(fileURLWithPath: testConfigurationPath!.path()))
+        configuration = try JSONDecoder().decode(TestConfiguration.self, from: data)
+        mountebankClient = MountebankClient(mountebankUrl: configuration!.mountebankUrl)
         requestHelper = RequestHelper()
     }
     
@@ -17,7 +20,7 @@ final class httpImposterTests: XCTestCase {
     }
     
     func testCreateHttpImposter() async throws{
-        let predicateHttpFields = HttpFields(path: configuration.relativeRequestPath, method: .GET)
+        let predicateHttpFields = HttpFields(path: configuration!.relativeRequestPath, method: .GET)
         let equalsPredicate = EqualsPredicate(equals: predicateHttpFields)
         let predicates = [equalsPredicate]
         
@@ -34,7 +37,7 @@ final class httpImposterTests: XCTestCase {
         let httpStubs = [httpStub]
         try await mountebankClient?.createHttpImposterAsync(port: testPort, stubs: httpStubs)
         
-        let requestPath = "\(configuration.baseRequestPath):\(testPort)\(configuration.relativeRequestPath)"
+        let requestPath = "\(configuration!.baseRequestPath):\(testPort)\(configuration!.relativeRequestPath)"
 
         let (responseData, responseCode) = try await requestHelper!.MakeRequestToMockAsync(requestPath: requestPath, method: .GET)!
         XCTAssertNotNil(responseData)
@@ -51,7 +54,7 @@ final class httpImposterTests: XCTestCase {
         let exampleRequestBody = SimpleRequestBody(exampleInt: 2, exampleBool: false, exampleString: "test")
         let jsonRequestData = try JSONEncoder().encode(exampleRequestBody)
         let jsonRequestBodyString = String(data: jsonRequestData, encoding: .utf8)
-        let predicateHttpFields = HttpFields(path: relativeRequestPath, method: .POST, body: jsonRequestBodyString)
+        let predicateHttpFields = HttpFields(path: configuration!.relativeRequestPath, method: .POST, body: jsonRequestBodyString)
         let equalsPredicate = EqualsPredicate(equals: predicateHttpFields)
         let predicates = [equalsPredicate]
         
@@ -64,7 +67,7 @@ final class httpImposterTests: XCTestCase {
         let httpStubs = [httpStub]
         try await mountebankClient?.createHttpImposterAsync(port: testPort, stubs: httpStubs)
         
-        let requestPath = "\(baseRequestPath):\(testPort)\(relativeRequestPath)"
+        let requestPath = "\(configuration!.baseRequestPath):\(testPort)\(configuration!.relativeRequestPath)"
 
         let (_, responseCode) = try await requestHelper!.MakeRequestToMockAsync(requestPath: requestPath, method: .POST, requestBodyData: jsonRequestData)!
         XCTAssertNotNil(responseCode)

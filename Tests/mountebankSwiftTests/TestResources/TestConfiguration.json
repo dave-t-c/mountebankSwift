@@ -1,0 +1,5 @@
+{
+    "baseRequestPath": "http://localhost",
+    "relativeRequestPath": "/v1/test",
+    "mountebankUrl": "http://localhost:2525",
+}

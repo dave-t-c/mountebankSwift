@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "mountebankSwift",
     platforms: [
-            .iOS(.v15),
+            .iOS(.v16),
             .macOS(.v12)
         ],
     products: [
@@ -22,6 +22,10 @@ let package = Package(
             name: "mountebankSwift"),
         .testTarget(
             name: "mountebankSwiftTests",
-            dependencies: ["mountebankSwift"]),
+            dependencies: ["mountebankSwift"],
+            resources: [
+                .copy("TestResources")
+            ]
+        )
     ]
 )
