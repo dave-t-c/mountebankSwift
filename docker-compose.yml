@@ -6,3 +6,4 @@ services:
     command: start --allowInjection
     ports:
       - "2525:2525"
+      - "2526:2526"

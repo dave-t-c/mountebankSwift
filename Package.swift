@@ -5,6 +5,10 @@ import PackageDescription
 
 let package = Package(
     name: "mountebankSwift",
+    platforms: [
+            .iOS(.v16),
+            .macOS(.v12)
+        ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -18,6 +22,10 @@ let package = Package(
             name: "mountebankSwift"),
         .testTarget(
             name: "mountebankSwiftTests",
-            dependencies: ["mountebankSwift"]),
+            dependencies: ["mountebankSwift"],
+            resources: [
+                .copy("TestResources")
+            ]
+        )
     ]
 )
