@@ -16,11 +16,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup Swift
-      uses: swift-actions/setup-swift@v1.25.0
     - name: Start Docker Compose
       uses: isbang/compose-action@v1.5.1
       with:
         compose-file: "./docker-compose.yml"
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v1.25.0
     - name: Build
       run: swift build -v
