@@ -20,8 +20,8 @@ jobs:
       run: "pwd"
     - name: List directory files
       run: "ls -a ./"
-    - name: setup-docker
-      uses: docker-practice/actions-setup-docker@v1
+    - name: test homebrew
+      run: "brew --version"
     - name: Setup Swift
       uses: swift-actions/setup-swift@v1.25.0
     - name: Build
