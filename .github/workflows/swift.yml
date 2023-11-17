@@ -20,8 +20,12 @@ jobs:
       run: "pwd"
     - name: List directory files
       run: "ls -a ./"
-    - name: test homebrew
-      run: "brew --version"
+    - name: Setup Docker
+      run: |
+        brew --version
+        brew install docker
+        colima start
+        docker-compose up -d
     - name: Setup Swift
       uses: swift-actions/setup-swift@v1.25.0
     - name: Build
