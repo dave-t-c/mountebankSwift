@@ -24,6 +24,7 @@ jobs:
       run: |
         brew --version
         brew install docker
+        brew install docker-compose
         colima start
         docker-compose up -d
     - name: Setup Swift
