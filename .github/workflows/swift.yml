@@ -19,7 +19,7 @@ jobs:
     - name: Print active directory
       run: "pwd"
     - name: List directory files
-      run: "ls -a"
+      run: "ls -a ./"
     - name: Start Docker Compose
       uses: isbang/compose-action@v1.5.1
       with:
