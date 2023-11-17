@@ -31,3 +31,5 @@ jobs:
       uses: swift-actions/setup-swift@v1.25.0
     - name: Build
       run: swift build -v
+    - name: Run tests
+      run: swift test -v
