@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -20,10 +20,8 @@ jobs:
       run: "pwd"
     - name: List directory files
       run: "ls -a ./"
-    - name: Start Docker Compose
-      uses: isbang/compose-action@v1.5.1
-      with:
-        compose-file: "./docker-compose.yml"
+    - name: setup-docker
+      uses: docker-practice/actions-setup-docker@v1
     - name: Setup Swift
       uses: swift-actions/setup-swift@v1.25.0
     - name: Build
