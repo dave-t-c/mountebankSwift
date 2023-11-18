@@ -16,7 +16,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Install Requirements
+      run: |
+        brew install docker
+        brew install docker-compose
     - name: Setup Swift
-      uses: swift-actions/setup-swift@v1.25.0             
-    - name: Build
-      run: swift build -v
+      uses: swift-actions/setup-swift@v1.25.0
+      with:
+        swift-version: "5.7.0"
+    - name: Get swift version
+      run: swift --version
+    - name: Start colima
+      run: colima start
+    - name: Start docker container
+      run: docker-compose up -d
+    - name: List available devices
+      run: xcrun simctl list devicetypes 
+    - name: Build and run tests
+      run: xcodebuild test -scheme mountebankSwift  -destination 'platform=iOS Simulator,name=iPhone 14 Pro'
+
