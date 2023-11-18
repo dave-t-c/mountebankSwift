@@ -16,19 +16,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup Docker
+    - name: Install Requirements
       run: |
-        brew --version
         brew install docker
         brew install docker-compose
-        colima start
-        docker-compose up -d 
+        brew install colima
     - name: Setup Swift
       uses: swift-actions/setup-swift@v1.25.0
       with:
         swift-version: "5.7.0"
     - name: Get swift version
       run: swift --version
+    - name: Start colima
+      run: colima start
+    - name: Start docker container
+      run: docker-compose up -d
     - name: List available devices
       run: xcrun simctl list devicetypes 
     - name: Build and run tests
