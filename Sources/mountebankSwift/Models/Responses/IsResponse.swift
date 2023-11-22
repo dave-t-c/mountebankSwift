@@ -7,8 +7,12 @@
 
 import Foundation
 
-struct IsResponse: Codable {
+class IsResponse: Response {
     let isResponse: HttpResponseFields
+    
+    init(isResponse: HttpResponseFields) {
+        self.isResponse = isResponse
+    }
     
     private enum CodingKeys : String, CodingKey {
         case isResponse = "is"

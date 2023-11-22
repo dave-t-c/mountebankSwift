@@ -7,10 +7,15 @@
 
 import Foundation
 
-struct HttpImposter: Codable {
+class HttpImposter: Imposter {
     let port: Int
     let requestProtocol: String = "http"
     let stubs: [HttpStub]
+    
+    init(port: Int, stubs: [HttpStub]) {
+        self.port = port
+        self.stubs = stubs
+    }
     
     private enum CodingKeys : String, CodingKey {
         case port, requestProtocol = "protocol", stubs
