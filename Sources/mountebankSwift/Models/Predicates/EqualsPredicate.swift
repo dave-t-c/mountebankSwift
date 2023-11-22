@@ -7,6 +7,10 @@
 
 import Foundation
 
-struct EqualsPredicate: Predicate {
+class EqualsPredicate: Predicate {
     let equals: HttpFields
+    
+    init(equals: HttpFields) {
+        self.equals = equals
+    }
 }

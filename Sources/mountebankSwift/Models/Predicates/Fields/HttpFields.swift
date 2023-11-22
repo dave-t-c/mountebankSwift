@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct HttpFields : Fields {
-    
+class HttpFields : Fields {
     let path: String
     let method: String
     let body: String?

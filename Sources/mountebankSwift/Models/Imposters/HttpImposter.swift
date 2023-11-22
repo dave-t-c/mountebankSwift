@@ -12,12 +12,12 @@ class HttpImposter: Imposter {
     let requestProtocol: String = "http"
     let stubs: [HttpStub]
     
-    private enum CodingKeys : String, CodingKey {
-        case port, requestProtocol = "protocol", stubs
-    }
-    
     init(port: Int, stubs: [HttpStub]) {
         self.port = port
         self.stubs = stubs
+    }
+    
+    private enum CodingKeys : String, CodingKey {
+        case port, requestProtocol = "protocol", stubs
     }
 }
