@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HttpStub: Codable {
+class HttpStub: Stub {
     let predicates: [EqualsPredicate]
     let responses: [IsResponse]
 }
