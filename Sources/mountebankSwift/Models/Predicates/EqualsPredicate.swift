@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct EqualsPredicate: Codable {
+struct EqualsPredicate: Predicate {
     let equals: HttpFields
 }

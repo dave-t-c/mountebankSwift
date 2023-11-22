@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct IsResponse: Codable {
+struct IsResponse: Response {
     let isResponse: HttpResponseFields
     
     private enum CodingKeys : String, CodingKey {

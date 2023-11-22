@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct HttpFields : Codable {
+struct HttpFields : Fields {
+    
+    let path: String
+    let method: String
+    let body: String?
     
     init(path: String, method: HttpMethod, body: String? = nil) {
         self.path = path
         self.method = String(describing: method)
         self.body = body
     }
-    
-    let path: String
-    let method: String
-    let body: String?
 }

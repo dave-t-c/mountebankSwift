@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HttpResponseFields: Codable {
+struct HttpResponseFields: ResponseFields {
     
     init(statusCode: Int, headers: Dictionary<String, String>? = nil, body: String? = nil) {
         self.statusCode = statusCode
