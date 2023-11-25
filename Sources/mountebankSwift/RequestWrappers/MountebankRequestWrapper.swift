@@ -50,7 +50,7 @@ class MountebankRequestWrapper {
             return
         }
         
-        if httpResponse.statusCode != 201{
+        if httpResponse.statusCode != 201 {
             print("Unable to create imposter, \(httpResponse.statusCode) returned")
             throw MountebankExceptions.unableToCreateImposter
         }
