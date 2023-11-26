@@ -34,7 +34,7 @@ class MountebankRequestWrapper {
         }
     }
     
-    func dreateImposterAsync(imposter: Imposter) async throws -> Void {
+    func createImposterAsync(imposter: Imposter) async throws -> Void {
         guard let url = URL(string: "\(self.mountebankUrl)/imposters") else {
             return
         }

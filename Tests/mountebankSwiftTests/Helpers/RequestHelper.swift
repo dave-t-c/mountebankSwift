@@ -11,6 +11,13 @@ import XCTest
 
 class RequestHelper {
     
+    func buildRequestPath(
+        baseRequestPath: String,
+        testPort: Int,
+        relativeRequestPath: String) -> String {
+        return "\(baseRequestPath):\(testPort)\(relativeRequestPath)"
+    }
+    
     func makeRequestToMockAsync(requestPath: String, method: HttpMethod, requestBodyData: Data? = nil) async throws -> (Data?, Int?)? {
         
         guard let url = URL(string: requestPath) else {

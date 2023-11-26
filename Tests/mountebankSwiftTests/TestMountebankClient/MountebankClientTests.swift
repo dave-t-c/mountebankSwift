@@ -6,20 +6,51 @@
 //
 
 import XCTest
+@testable import mountebankSwift
 
 final class MountebankClientTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    var mountebankClient: MountebankClient?
+    var requestHelper: RequestHelper?
+    var mockHelper: MockHelper?
+    var configuration: TestConfiguration?
+    
+    override func setUp() async throws {
+        configuration = try ConfigurationHelper.importTestConfiguration()
+        mountebankClient = MountebankClient(mountebankUrl: configuration!.mountebankUrl)
+        requestHelper = RequestHelper()
+        mockHelper = MockHelper()
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    override func tearDown() async throws{
+        try await mountebankClient?.deleteImposterAsync(port: configuration!.defaultTestPort)
     }
 
     /** Create a basic imposter */
-    func testCreateImposter() throws {
-        XCTFail()
+    func testCreateImposter() async throws {
+        let expectedStatusCode: Int = 200
+        let expectedResponse: [Int] = [1,2,3]
+        
+        try await mockHelper!.createBasicHttpMockAsync(
+            configuration: configuration,
+            mountebankClient: mountebankClient,
+            expectedStatusCode: expectedStatusCode,
+            expectedResponse: expectedResponse)
+        
+        let requestPath = requestHelper!.buildRequestPath(
+            baseRequestPath: configuration!.baseRequestPath,
+            testPort: configuration!.defaultTestPort,
+            relativeRequestPath: configuration!.relativeRequestPath)
+
+        let (responseData, responseCode) = try await requestHelper!.makeRequestToMockAsync(requestPath: requestPath, method: .GET)!
+        XCTAssertNotNil(responseData)
+        XCTAssertNotNil(responseCode)
+        
+        XCTAssertEqual(expectedStatusCode, responseCode)
+        
+        let actualResponse = try JSONDecoder().decode([Int].self, from: responseData!)
+        
+        XCTAssertEqual(expectedResponse, actualResponse)
     }
     
     /** Create a duplicate imposter where one has already been created */
@@ -27,19 +58,13 @@ final class MountebankClientTests: XCTestCase {
         XCTFail()
     }
     
-    func testCreateImposterContainerNotRunning() throws {
-        XCTFail()
-    }
-    
+    /** Delete an imposter*/
     func testDeleteImposter() throws {
         XCTFail()
     }
     
+    /** Delete an imposter when a matching imposter has not been created */
     func testDeleteImposterNotCreated() throws {
-        XCTFail()
-    }
-    
-    func testDeleteImposterContainerNotRunning() throws {
         XCTFail()
     }
 }

@@ -20,7 +20,7 @@ class MountebankClient {
     func createHttpImposterAsync(port: Int, stubs: [HttpStub]) async throws -> Void {
         let httpImposter = HttpImposter(port: port, stubs: stubs)
         print("Creating new HTTP imposter on port \(port)")
-        try await self.requestWrapper.dreateImposterAsync(imposter: httpImposter)
+        try await self.requestWrapper.createImposterAsync(imposter: httpImposter)
     }
     
     func deleteImposterAsync(port: Int) async throws -> Void{
