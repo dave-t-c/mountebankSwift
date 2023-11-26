@@ -54,8 +54,32 @@ final class MountebankClientTests: XCTestCase {
     }
     
     /** Create a duplicate imposter where one has already been created */
-    func testCreateImposterAlreadyExists() throws {
-        XCTFail()
+    func testCreateImposterAlreadyExists() async throws {
+        let expectedStatusCode: Int = 200
+        let expectedResponse: [Int] = [1,2,3]
+        
+        try await mockHelper!.createBasicHttpMockAsync(
+            configuration: configuration,
+            mountebankClient: mountebankClient,
+            expectedStatusCode: expectedStatusCode,
+            expectedResponse: expectedResponse)
+        
+        let exceptionExpectation = expectation(description: "Error thrown creating duplicate mock")
+        
+        do {
+            try await mockHelper!.createBasicHttpMockAsync(
+                configuration: configuration,
+                mountebankClient: mountebankClient,
+                expectedStatusCode: expectedStatusCode,
+                expectedResponse: expectedResponse)
+            
+        } catch MountebankExceptions.unableToCreateImposter {
+            exceptionExpectation.fulfill()
+        } catch {
+            XCTFail("Unexpected exception thrown")
+        }
+        
+        await fulfillment(of: [exceptionExpectation])
     }
     
     /** Delete an imposter*/
