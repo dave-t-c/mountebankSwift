@@ -66,7 +66,7 @@ class MountebankRequestWrapper {
         }
         
         do {
-            let retrievedImposters = try JSONDecoder().decode(RetrievedImpostersResponse.self, from: data)
+            let retrievedImposters = try JSONDecoder().decode(RetrieveImpostersResponse.self, from: data)
             return retrievedImposters.imposters
         }
         catch {

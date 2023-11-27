@@ -99,9 +99,4 @@ final class MountebankClientTests: XCTestCase {
         
         XCTAssertEqual(0, retrievedImposters.count)
     }
-    
-    /** Delete an imposter when a matching imposter has not been created */
-    func testDeleteImposterNotCreated() throws {
-        XCTFail()
-    }
 }

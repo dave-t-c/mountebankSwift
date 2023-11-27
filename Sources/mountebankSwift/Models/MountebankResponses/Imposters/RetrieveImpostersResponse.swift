@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RetrievedImpostersResponse: Codable {
+class RetrieveImpostersResponse: Codable {
     let imposters: [RetrievedImposter]
     
     init(imposters: [RetrievedImposter]) {
