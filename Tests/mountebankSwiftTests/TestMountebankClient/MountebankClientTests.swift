@@ -99,4 +99,17 @@ final class MountebankClientTests: XCTestCase {
         
         XCTAssertEqual(0, retrievedImposters.count)
     }
+    
+    /** Retrieve a list of created imposters **/
+    func testRetrieveCreatedImposters() async throws {
+        XCTFail()
+    }
+    
+    /** 
+     Retrieve created imposters when non have been setup
+     This should return an empty list
+     */
+    func testRetrieveCreatedImpostersNonSetUp() async throws {
+        XCTFail()
+    }
 }
