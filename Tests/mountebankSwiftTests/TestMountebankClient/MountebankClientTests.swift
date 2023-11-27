@@ -83,8 +83,21 @@ final class MountebankClientTests: XCTestCase {
     }
     
     /** Delete an imposter*/
-    func testDeleteImposter() throws {
-        XCTFail()
+    func testDeleteImposter() async throws {
+        let expectedStatusCode: Int = 200
+        let expectedResponse: [Int] = [1,2,3]
+        
+        try await mockHelper!.createBasicHttpMockAsync(
+            configuration: configuration,
+            mountebankClient: mountebankClient,
+            expectedStatusCode: expectedStatusCode,
+            expectedResponse: expectedResponse)
+        
+        try await mountebankClient!.deleteImposterAsync(port: configuration!.defaultTestPort)
+        
+        let retrievedImposters = try await mountebankClient!.retrieveCreatedImpostersAsync()
+        
+        XCTAssertEqual(0, retrievedImposters.count)
     }
     
     /** Delete an imposter when a matching imposter has not been created */
