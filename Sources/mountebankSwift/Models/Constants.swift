@@ -9,7 +9,8 @@ import Foundation
 
 struct Constants {
     struct ResponseCodes {
-        
+        static let successCreateImposterStatusCode: Int = 201
+        static let successRetrieveImpostersStatusCode: Int = 200
     }
     
     struct ResponseHeaders {

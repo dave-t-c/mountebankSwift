@@ -41,7 +41,7 @@ class MountebankRequestWrapper {
             return
         }
         
-        if httpResponse.statusCode != 201 {
+        if httpResponse.statusCode != Constants.ResponseCodes.successCreateImposterStatusCode {
             print("Unable to create imposter, \(httpResponse.statusCode) returned")
             throw MountebankExceptions.unableToCreateImposter
         }
@@ -60,7 +60,7 @@ class MountebankRequestWrapper {
             throw MountebankExceptions.unableToRetrieveImposters
         }
         
-        if httpResponse.statusCode != 200 {
+        if httpResponse.statusCode != Constants.ResponseCodes.successRetrieveImpostersStatusCode {
             print("Unable to retrive created imposters")
             throw MountebankExceptions.unableToRetrieveImposters
         }
