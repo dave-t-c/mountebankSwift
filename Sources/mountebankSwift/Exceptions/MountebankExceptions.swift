@@ -9,6 +9,5 @@ import Foundation
 
 enum MountebankExceptions: Error {
     case unableToCreateImposter
-    case unableToDeleteImposter
     case unableToRetrieveImposters
 }

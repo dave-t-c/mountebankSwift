@@ -22,16 +22,7 @@ class MountebankRequestWrapper {
         request.httpMethod = "DELETE"
         print("Calling \(request.httpMethod!) \(request.url!)")
         
-        let (_, response) = try await URLSession.shared.data(for: request)
-        guard let httpResponse = response as? HTTPURLResponse else {
-            print("Invalid response recieved from server")
-            return
-        }
-        
-        if httpResponse.statusCode != 200{
-            print("Unable to delete imposter, \(httpResponse.statusCode) returned")
-            throw MountebankExceptions.unableToDeleteImposter
-        }
+        let _ = try await URLSession.shared.data(for: request)
     }
     
     func createImposterAsync(imposter: Imposter) async throws -> Void {
