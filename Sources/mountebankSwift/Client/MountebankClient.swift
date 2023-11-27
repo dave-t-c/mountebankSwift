@@ -26,4 +26,8 @@ class MountebankClient {
     func deleteImposterAsync(port: Int) async throws -> Void{
         try await self.requestWrapper.deleteImposterAsync(port: port)
     }
+    
+    func retrieveCreatedImpostersAsync() async throws -> [RetrievedImposter] {
+        return try await self.requestWrapper.retreiveCreatedImpostersAsync()
+    }
 }

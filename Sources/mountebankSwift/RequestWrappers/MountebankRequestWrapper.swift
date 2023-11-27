@@ -55,4 +55,32 @@ class MountebankRequestWrapper {
             throw MountebankExceptions.unableToCreateImposter
         }
     }
+    
+    func retreiveCreatedImpostersAsync() async throws -> [RetrievedImposter] {
+        guard let url = URL(string: "\(self.mountebankUrl)/imposters") else {
+            throw MountebankExceptions.unableToRetrieveImposters
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard let httpResponse = response as? HTTPURLResponse else {
+            print("Invalid response recieved from server")
+            throw MountebankExceptions.unableToRetrieveImposters
+        }
+        
+        if httpResponse.statusCode != 200 {
+            print("Unable to retrive created imposters")
+            throw MountebankExceptions.unableToRetrieveImposters
+        }
+        
+        do {
+            let retrievedImposters = try JSONDecoder().decode(RetrievedImpostersResponse.self, from: data)
+            return retrievedImposters.imposters
+        }
+        catch {
+            print("Unable to cast response to imposter: \(error)")
+            throw MountebankExceptions.unableToRetrieveImposters
+        }
+    }
 }
