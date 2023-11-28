@@ -23,7 +23,7 @@ jobs:
     - name: Setup Swift
       uses: swift-actions/setup-swift@v1.25.0
       with:
-        swift-version: "5.9.0"
+        swift-version: "5.7.0"
     - name: Get swift version
       run: swift --version
     - name: Start colima
