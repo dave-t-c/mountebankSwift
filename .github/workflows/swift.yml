@@ -22,7 +22,7 @@ jobs:
         brew install docker-compose
     - uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: latest-stable
+        xcode-version: 14.3
     - name: Get swift version
       run: swift --version
     - name: Xcode version
