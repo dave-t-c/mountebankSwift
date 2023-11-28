@@ -102,7 +102,23 @@ final class MountebankClientTests: XCTestCase {
     
     /** Retrieve a list of created imposters **/
     func testRetrieveCreatedImposters() async throws {
-        XCTFail()
+        let expectedStatusCode: Int = 200
+        let expectedResponse: [Int] = [1,2,3]
+        
+        try await mockHelper!.createBasicHttpMockAsync(
+            configuration: configuration,
+            mountebankClient: mountebankClient,
+            expectedStatusCode: expectedStatusCode,
+            expectedResponse: expectedResponse)
+        
+        let retrievedImposters = try await mountebankClient!.retrieveCreatedImpostersAsync()
+        
+        XCTAssertEqual(1, retrievedImposters.count)
+        
+        let retrievedImposter = retrievedImposters[0]
+        XCTAssertEqual(configuration!.defaultTestPort, retrievedImposter.port)
+        XCTAssertEqual("http", retrievedImposter.requestProtocol)
+        XCTAssertEqual(0, retrievedImposter.numberOfRequests)
     }
     
     /** 
@@ -110,6 +126,7 @@ final class MountebankClientTests: XCTestCase {
      This should return an empty list
      */
     func testRetrieveCreatedImpostersNonSetUp() async throws {
-        XCTFail()
+        let retrievedImposters = try await mountebankClient!.retrieveCreatedImpostersAsync()
+        XCTAssertTrue(retrievedImposters.isEmpty)
     }
 }
