@@ -22,6 +22,8 @@ jobs:
         brew install docker-compose
     - name: Get swift version
       run: swift --version
+    - name: Xcode version
+      run: xcodebuild -version
     - name: Start colima
       run: colima start
     - name: Start docker container
