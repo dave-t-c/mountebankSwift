@@ -30,7 +30,19 @@ class MountebankClient {
     }
 
     /// Retrieves all created imposters
-    func retrieveCreatedImpostersAsync() async throws -> [RetrievedImposter] {
+    func retrieveCreatedImpostersAsync() async throws -> [SimpleRetrievedImposter] {
         return try await self.requestWrapper.retreiveCreatedImpostersAsync()
+    }
+
+    /// Retrieves the requests made to a Http Imposter
+    func retrieveImposterAsync(port: Int) async throws -> RetrievedHttpImposter {
+        let imposterData = try await self.requestWrapper.retrieveImposterAsync(port: port)
+        do {
+            let retrievedImposter = try JSONDecoder().decode(RetrievedHttpImposter.self, from: imposterData)
+            return retrievedImposter
+        } catch {
+            print("Unable to cast response to http imposter: \(error)")
+            throw MountebankExceptions.unableToRetrieveImposter
+        }
     }
 }

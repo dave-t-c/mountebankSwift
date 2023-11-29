@@ -132,8 +132,9 @@ final class MountebankClientTests: XCTestCase {
         XCTAssertTrue(retrievedImposters.isEmpty)
     }
 
-    /// Retrieve the requests made to an endpoint
-    func testRetrieveRequestsToEndpoint() async throws {
+    /// Retrieve an individual imposter
+    /// This will include requests etc made.
+    func testRetrieveImposter() async throws {
         let expectedStatusCode: Int = 200
         let expectedResponse: [Int] = [1, 2, 3]
 

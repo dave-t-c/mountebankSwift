@@ -8,9 +8,9 @@
 import Foundation
 
 class RetrieveImpostersResponse: Codable {
-    let imposters: [RetrievedImposter]
+    let imposters: [SimpleRetrievedImposter]
 
-    init(imposters: [RetrievedImposter]) {
+    init(imposters: [SimpleRetrievedImposter]) {
         self.imposters = imposters
     }
 }

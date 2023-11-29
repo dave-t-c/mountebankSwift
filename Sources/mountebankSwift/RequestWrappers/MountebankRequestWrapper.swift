@@ -47,7 +47,7 @@ class MountebankRequestWrapper {
         }
     }
 
-    func retreiveCreatedImpostersAsync() async throws -> [RetrievedImposter] {
+    func retreiveCreatedImpostersAsync() async throws -> [SimpleRetrievedImposter] {
         guard let url = URL(string: "\(self.mountebankUrl)/imposters") else {
             throw MountebankExceptions.unableToRetrieveImposters
         }
@@ -72,5 +72,26 @@ class MountebankRequestWrapper {
             print("Unable to cast response to imposter: \(error)")
             throw MountebankExceptions.unableToRetrieveImposters
         }
+    }
+
+    func retrieveImposterAsync(port: Int) async throws -> Data{
+        guard let url = URL(string: "\(self.mountebankUrl)/imposters/\(port)") else {
+            throw MountebankExceptions.unableToRetrieveImposter
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard let httpResponse = response as? HTTPURLResponse else {
+            print("Invalid response recieved from server")
+            throw MountebankExceptions.unableToRetrieveImposter
+        }
+
+        if httpResponse.statusCode != Constants.ResponseCodes.successRetrieveImpostersStatusCode {
+            print("Unable to retrive imposter for \(url.absoluteString)")
+            throw MountebankExceptions.unableToRetrieveImposter
+        }
+
+        return data
     }
 }
