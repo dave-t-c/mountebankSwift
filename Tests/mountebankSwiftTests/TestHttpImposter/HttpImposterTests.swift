@@ -41,7 +41,7 @@ final class HttpImposterTests: XCTestCase {
             baseRequestPath: configuration!.baseRequestPath,
             testPort: configuration!.defaultTestPort,
             relativeRequestPath: configuration!.relativeRequestPath)
-        
+
         let (responseData, responseCode) = try await requestHelper!.makeRequestToMockAsync(
             requestPath: requestPath,
             method: .GET)!
