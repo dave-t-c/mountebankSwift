@@ -17,7 +17,7 @@ class HttpImposter: Imposter {
         self.stubs = stubs
     }
 
-    private enum CodingKeys : String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case port, requestProtocol = "protocol", stubs
     }
 }

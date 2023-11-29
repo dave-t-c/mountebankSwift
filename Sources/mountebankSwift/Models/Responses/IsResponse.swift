@@ -14,7 +14,7 @@ class IsResponse: Response {
         self.isResponse = isResponse
     }
 
-    private enum CodingKeys : String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case isResponse = "is"
     }
 }

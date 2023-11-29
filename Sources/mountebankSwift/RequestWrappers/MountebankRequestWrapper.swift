@@ -22,7 +22,7 @@ class MountebankRequestWrapper {
         request.httpMethod = "DELETE"
         print("Calling \(request.httpMethod!) \(request.url!)")
 
-        let _ = try await URLSession.shared.data(for: request)
+        _ = try await URLSession.shared.data(for: request)
     }
 
     func createImposterAsync(imposter: Imposter) async throws {
@@ -68,8 +68,7 @@ class MountebankRequestWrapper {
         do {
             let retrievedImposters = try JSONDecoder().decode(RetrieveImpostersResponse.self, from: data)
             return retrievedImposters.imposters
-        }
-        catch {
+        } catch {
             print("Unable to cast response to imposter: \(error)")
             throw MountebankExceptions.unableToRetrieveImposters
         }

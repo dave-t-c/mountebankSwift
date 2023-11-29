@@ -12,16 +12,16 @@ final class HttpImposterTests: XCTestCase {
         requestHelper = RequestHelper()
     }
 
-    override func tearDown() async throws{
+    override func tearDown() async throws {
         try await mountebankClient?.deleteImposterAsync(port: configuration!.defaultTestPort)
     }
 
-    func testCreateHttpImposter() async throws{
+    func testCreateHttpImposter() async throws {
         let predicateHttpFields = HttpFields(path: configuration!.relativeRequestPath, method: .GET)
         let equalsPredicate = EqualsPredicate(equals: predicateHttpFields)
         let predicates = [equalsPredicate]
 
-        let expectedResponse: [Int] = [1,2,3]
+        let expectedResponse: [Int] = [1, 2, 3]
         let bodyData = try JSONEncoder().encode(expectedResponse)
         let bodyJsonString = String(data: bodyData, encoding: .utf8)
 
@@ -54,7 +54,6 @@ final class HttpImposterTests: XCTestCase {
         let predicateHttpFields = HttpFields(path: configuration!.relativeRequestPath, method: .POST, body: jsonRequestBodyString)
         let equalsPredicate = EqualsPredicate(equals: predicateHttpFields)
         let predicates = [equalsPredicate]
-
 
         let expectedStatusCode: Int = 201
         let httpResponseFields = HttpResponseFields(statusCode: expectedStatusCode)

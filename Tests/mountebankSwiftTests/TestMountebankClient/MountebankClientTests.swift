@@ -22,14 +22,14 @@ final class MountebankClientTests: XCTestCase {
         mockHelper = MockHelper()
     }
 
-    override func tearDown() async throws{
+    override func tearDown() async throws {
         try await mountebankClient?.deleteImposterAsync(port: configuration!.defaultTestPort)
     }
 
     /** Create a basic imposter */
     func testCreateImposter() async throws {
         let expectedStatusCode: Int = 200
-        let expectedResponse: [Int] = [1,2,3]
+        let expectedResponse: [Int] = [1, 2, 3]
 
         try await mockHelper!.createBasicHttpMockAsync(
             configuration: configuration,
@@ -56,7 +56,7 @@ final class MountebankClientTests: XCTestCase {
     /** Create a duplicate imposter where one has already been created */
     func testCreateImposterAlreadyExists() async throws {
         let expectedStatusCode: Int = 200
-        let expectedResponse: [Int] = [1,2,3]
+        let expectedResponse: [Int] = [1, 2, 3]
 
         try await mockHelper!.createBasicHttpMockAsync(
             configuration: configuration,
@@ -85,7 +85,7 @@ final class MountebankClientTests: XCTestCase {
     /** Delete an imposter*/
     func testDeleteImposter() async throws {
         let expectedStatusCode: Int = 200
-        let expectedResponse: [Int] = [1,2,3]
+        let expectedResponse: [Int] = [1, 2, 3]
 
         try await mockHelper!.createBasicHttpMockAsync(
             configuration: configuration,
@@ -103,7 +103,7 @@ final class MountebankClientTests: XCTestCase {
     /** Retrieve a list of created imposters **/
     func testRetrieveCreatedImposters() async throws {
         let expectedStatusCode: Int = 200
-        let expectedResponse: [Int] = [1,2,3]
+        let expectedResponse: [Int] = [1, 2, 3]
 
         try await mockHelper!.createBasicHttpMockAsync(
             configuration: configuration,

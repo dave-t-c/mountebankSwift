@@ -13,7 +13,7 @@ class MockHelper {
         configuration: TestConfiguration?,
         mountebankClient: MountebankClient?,
         expectedStatusCode: Int,
-        expectedResponse: Codable) async throws{
+        expectedResponse: Codable) async throws {
         let predicateHttpFields = HttpFields(path: configuration!.relativeRequestPath, method: .GET)
         let equalsPredicate = EqualsPredicate(equals: predicateHttpFields)
         let predicates = [equalsPredicate]
