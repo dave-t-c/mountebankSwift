@@ -9,12 +9,12 @@ import Foundation
 
 class IsResponse: Response {
     let isResponse: HttpResponseFields
-    
+
     init(isResponse: HttpResponseFields) {
         self.isResponse = isResponse
     }
-    
-    private enum CodingKeys : String, CodingKey {
+
+    private enum CodingKeys: String, CodingKey {
         case isResponse = "is"
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 class RetrieveImpostersResponse: Codable {
     let imposters: [RetrievedImposter]
-    
+
     init(imposters: [RetrievedImposter]) {
         self.imposters = imposters
     }
