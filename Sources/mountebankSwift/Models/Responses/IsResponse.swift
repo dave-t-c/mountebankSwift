@@ -9,7 +9,7 @@ import Foundation
 
 class IsResponse: Response {
     let isResponse: HttpResponseFields
-    
+
     init(isResponse: HttpResponseFields) {
         self.isResponse = isResponse
     }

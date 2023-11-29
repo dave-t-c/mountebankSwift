@@ -11,7 +11,7 @@ class RetrievedImposter: Codable {
     var port: Int
     var requestProtocol: String
     var numberOfRequests: Int
-    
+
     init(port: Int, requestProtocol: String, numberOfRequests: Int) {
         self.port = port
         self.requestProtocol = requestProtocol

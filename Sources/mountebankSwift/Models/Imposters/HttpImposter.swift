@@ -11,7 +11,7 @@ class HttpImposter: Imposter {
     let port: Int
     let requestProtocol: String = "http"
     let stubs: [HttpStub]
-    
+
     init(port: Int, stubs: [HttpStub]) {
         self.port = port
         self.stubs = stubs
