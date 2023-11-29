@@ -18,8 +18,8 @@ class MountebankClient {
     }
 
     /// Create a new http imposter for the given stubs
-    func createHttpImposterAsync(port: Int, stubs: [HttpStub]) async throws {
-        let httpImposter = HttpImposter(port: port, stubs: stubs)
+    func createHttpImposterAsync(port: Int, stubs: [HttpStub], name: String? = nil) async throws {
+        let httpImposter = HttpImposter(port: port, stubs: stubs, name: name)
         print("Creating new HTTP imposter on port \(port)")
         try await self.requestWrapper.createImposterAsync(imposter: httpImposter)
     }
