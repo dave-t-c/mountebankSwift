@@ -143,4 +143,4 @@ func retrieveHttpImposter() async throws {
     let retrievedImposter = try await mountebankClient.retrieveHttpImposterAsync(port: 2526)
 }
 ```
-This will detail for all requests made to this imposter.
+This will include detail for all requests made to this imposter.
