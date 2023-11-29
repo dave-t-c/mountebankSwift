@@ -17,7 +17,7 @@ class RetrievedImposter: Codable {
         self.requestProtocol = requestProtocol
         self.numberOfRequests = numberOfRequests
     }
-    
+
     private enum CodingKeys : String, CodingKey {
         case port, requestProtocol = "protocol", numberOfRequests
     }

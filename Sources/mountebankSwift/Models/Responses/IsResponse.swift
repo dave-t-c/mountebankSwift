@@ -13,7 +13,7 @@ class IsResponse: Response {
     init(isResponse: HttpResponseFields) {
         self.isResponse = isResponse
     }
-    
+
     private enum CodingKeys : String, CodingKey {
         case isResponse = "is"
     }
