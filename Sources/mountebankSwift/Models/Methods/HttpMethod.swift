@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum HttpMethod: Codable {
-    case GET
-    case POST
-    case PUT
-    case DELETE
+enum HttpMethod: String, Codable {
+    case GET = "GET"
+    case POST = "POST"
+    case PUT = "PUT"
+    case DELETE = "DELETE"
 }
