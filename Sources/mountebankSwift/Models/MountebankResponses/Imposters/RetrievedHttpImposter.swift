@@ -20,4 +20,3 @@ class RetrievedHttpImposter: RetrievedImposter {
         case requests
     }
 }
-

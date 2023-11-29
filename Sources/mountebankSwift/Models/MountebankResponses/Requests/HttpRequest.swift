@@ -15,7 +15,7 @@ class HttpRequest: Codable {
     var method: HttpMethod
     var headers: [String: String]
 
-    init(path: String, body: String, method: HttpMethod, headers: [String : String]) {
+    init(path: String, body: String, method: HttpMethod, headers: [String: String]) {
         self.path = path
         self.body = body
         self.method = method

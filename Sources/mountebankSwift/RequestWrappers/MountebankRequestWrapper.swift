@@ -74,7 +74,7 @@ class MountebankRequestWrapper {
         }
     }
 
-    func retrieveImposterAsync(port: Int) async throws -> Data{
+    func retrieveImposterAsync(port: Int) async throws -> Data {
         guard let url = URL(string: "\(self.mountebankUrl)/imposters/\(port)") else {
             throw MountebankExceptions.unableToRetrieveImposter
         }
