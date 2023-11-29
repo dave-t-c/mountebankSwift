@@ -17,10 +17,10 @@ class MockHelper {
         let predicateHttpFields = HttpFields(path: configuration!.relativeRequestPath, method: .GET)
         let equalsPredicate = EqualsPredicate(equals: predicateHttpFields)
         let predicates = [equalsPredicate]
-        
+
         let bodyData = try JSONEncoder().encode(expectedResponse)
         let bodyJsonString = String(data: bodyData, encoding: .utf8)
-        
+
         let responseHeaders = Constants.ResponseHeaders.defaultJsonResponseHeaders
         let httpResponseFields = HttpResponseFields(statusCode: expectedStatusCode, headers: responseHeaders, body: bodyJsonString)
         let response = IsResponse(isResponse: httpResponseFields)
