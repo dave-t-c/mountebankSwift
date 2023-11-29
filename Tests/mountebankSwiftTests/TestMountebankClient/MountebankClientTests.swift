@@ -153,7 +153,7 @@ final class MountebankClientTests: XCTestCase {
             requestPath: requestPath,
             method: .GET)
 
-        let retrievedImposter = try await mountebankClient!.retrieveImposterAsync(
+        let retrievedImposter = try await mountebankClient!.retrieveHttpImposterAsync(
             port: configuration!.defaultTestPort)
 
         XCTAssertNotNil(retrievedImposter)
@@ -166,5 +166,11 @@ final class MountebankClientTests: XCTestCase {
 
         // No body passed in to request, request body should be empty string
         XCTAssertTrue(requestMade.body.isEmpty)
+    }
+
+    func retrieveHttpImposter() async throws {
+        let mountebankClient = MountebankClient(mountebankUrl: "http://localhost:2525")
+        let retrievedImposter = try await mountebankClient.retrieveHttpImposterAsync(
+            port: 2526)
     }
 }

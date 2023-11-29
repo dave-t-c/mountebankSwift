@@ -35,7 +35,7 @@ class MountebankClient {
     }
 
     /// Retrieves the requests made to a Http Imposter
-    func retrieveImposterAsync(port: Int) async throws -> RetrievedHttpImposter {
+    func retrieveHttpImposterAsync(port: Int) async throws -> RetrievedHttpImposter {
         let imposterData = try await self.requestWrapper.retrieveImposterAsync(port: port)
         do {
             let retrievedImposter = try JSONDecoder().decode(RetrievedHttpImposter.self, from: imposterData)
