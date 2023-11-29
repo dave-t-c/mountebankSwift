@@ -37,8 +37,11 @@ final class HttpImposterTests: XCTestCase {
         let httpStubs = [httpStub]
         try await mountebankClient?.createHttpImposterAsync(port: configuration!.defaultTestPort, stubs: httpStubs)
 
-        let requestPath = "\(configuration!.baseRequestPath):\(configuration!.defaultTestPort)\(configuration!.relativeRequestPath)"
-
+        let requestPath = requestHelper!.buildRequestPath(
+            baseRequestPath: configuration!.baseRequestPath,
+            testPort: configuration!.defaultTestPort,
+            relativeRequestPath: configuration!.relativeRequestPath)
+        
         let (responseData, responseCode) = try await requestHelper!.makeRequestToMockAsync(
             requestPath: requestPath,
             method: .GET)!
@@ -56,7 +59,10 @@ final class HttpImposterTests: XCTestCase {
         let exampleRequestBody = SimpleRequestBody(exampleInt: 2, exampleBool: false, exampleString: "test")
         let jsonRequestData = try JSONEncoder().encode(exampleRequestBody)
         let jsonRequestBodyString = String(data: jsonRequestData, encoding: .utf8)
-        let predicateHttpFields = HttpFields(path: configuration!.relativeRequestPath, method: .POST, body: jsonRequestBodyString)
+        let predicateHttpFields = HttpFields(
+            path: configuration!.relativeRequestPath,
+            method: .POST,
+            body: jsonRequestBodyString)
         let equalsPredicate = EqualsPredicate(equals: predicateHttpFields)
         let predicates = [equalsPredicate]
 
