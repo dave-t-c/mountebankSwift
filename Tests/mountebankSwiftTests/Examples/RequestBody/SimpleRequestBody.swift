@@ -13,7 +13,7 @@ struct SimpleRequestBody: Codable {
         self.exampleBool = exampleBool
         self.exampleString = exampleString
     }
-    
+
     let exampleInt: Int?
     let exampleBool: Bool?
     let exampleString: String?

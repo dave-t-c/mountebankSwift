@@ -7,6 +7,10 @@
 
 import Foundation
 
-struct EqualsPredicate: Codable {
+class EqualsPredicate: Predicate {
     let equals: HttpFields
+
+    init(equals: HttpFields) {
+        self.equals = equals
+    }
 }

@@ -11,19 +11,26 @@ import Foundation
 class MountebankClient {
     var mountebankUrl: String
     var requestWrapper: MountebankRequestWrapper
-    
+
     init(mountebankUrl: String) {
         self.mountebankUrl = mountebankUrl
         self.requestWrapper = MountebankRequestWrapper(mountebankUrl: mountebankUrl)
     }
-    
-    func createHttpImposterAsync(port: Int, stubs: [HttpStub]) async throws -> Void {
+
+    /// Create a new http imposter for the given stubs
+    func createHttpImposterAsync(port: Int, stubs: [HttpStub]) async throws {
         let httpImposter = HttpImposter(port: port, stubs: stubs)
         print("Creating new HTTP imposter on port \(port)")
-        try await self.requestWrapper.dreateImposterAsync(imposter: httpImposter)
+        try await self.requestWrapper.createImposterAsync(imposter: httpImposter)
     }
-    
-    func deleteImposterAsync(port: Int) async throws -> Void{
+
+    /// Deletes an imposter on the given port
+    func deleteImposterAsync(port: Int) async throws {
         try await self.requestWrapper.deleteImposterAsync(port: port)
+    }
+
+    /// Retrieves all created imposters
+    func retrieveCreatedImpostersAsync() async throws -> [RetrievedImposter] {
+        return try await self.requestWrapper.retreiveCreatedImpostersAsync()
     }
 }
