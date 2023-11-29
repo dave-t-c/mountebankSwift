@@ -27,7 +27,10 @@ final class HttpImposterTests: XCTestCase {
 
         let responseHeaders = ["content-Type": "application/json"]
         let expectedStatusCode: Int = 200
-        let httpResponseFields = HttpResponseFields(statusCode: expectedStatusCode, headers: responseHeaders, body: bodyJsonString)
+        let httpResponseFields = HttpResponseFields(
+            statusCode: expectedStatusCode,
+            headers: responseHeaders,
+            body: bodyJsonString)
         let response = IsResponse(isResponse: httpResponseFields)
         let responses = [response]
         let httpStub = HttpStub(predicates: predicates, responses: responses)
@@ -36,7 +39,9 @@ final class HttpImposterTests: XCTestCase {
 
         let requestPath = "\(configuration!.baseRequestPath):\(configuration!.defaultTestPort)\(configuration!.relativeRequestPath)"
 
-        let (responseData, responseCode) = try await requestHelper!.makeRequestToMockAsync(requestPath: requestPath, method: .GET)!
+        let (responseData, responseCode) = try await requestHelper!.makeRequestToMockAsync(
+            requestPath: requestPath,
+            method: .GET)!
         XCTAssertNotNil(responseData)
         XCTAssertNotNil(responseCode)
 
@@ -63,9 +68,15 @@ final class HttpImposterTests: XCTestCase {
         let httpStubs = [httpStub]
         try await mountebankClient?.createHttpImposterAsync(port: configuration!.defaultTestPort, stubs: httpStubs)
 
-        let requestPath = "\(configuration!.baseRequestPath):\(configuration!.defaultTestPort)\(configuration!.relativeRequestPath)"
+        let requestPath = requestHelper!.buildRequestPath(
+            baseRequestPath: configuration!.baseRequestPath,
+            testPort: configuration!.defaultTestPort,
+            relativeRequestPath: configuration!.relativeRequestPath)
 
-        let (_, responseCode) = try await requestHelper!.makeRequestToMockAsync(requestPath: requestPath, method: .POST, requestBodyData: jsonRequestData)!
+        let (_, responseCode) = try await requestHelper!.makeRequestToMockAsync(
+            requestPath: requestPath,
+            method: .POST,
+            requestBodyData: jsonRequestData)!
         XCTAssertNotNil(responseCode)
 
         XCTAssertEqual(expectedStatusCode, responseCode)

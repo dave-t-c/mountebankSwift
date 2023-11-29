@@ -22,7 +22,10 @@ class MockHelper {
         let bodyJsonString = String(data: bodyData, encoding: .utf8)
 
         let responseHeaders = Constants.ResponseHeaders.defaultJsonResponseHeaders
-        let httpResponseFields = HttpResponseFields(statusCode: expectedStatusCode, headers: responseHeaders, body: bodyJsonString)
+        let httpResponseFields = HttpResponseFields(
+            statusCode: expectedStatusCode,
+            headers: responseHeaders,
+            body: bodyJsonString)
         let response = IsResponse(isResponse: httpResponseFields)
         let responses = [response]
         let httpStub = HttpStub(predicates: predicates, responses: responses)

@@ -42,7 +42,9 @@ final class MountebankClientTests: XCTestCase {
             testPort: configuration!.defaultTestPort,
             relativeRequestPath: configuration!.relativeRequestPath)
 
-        let (responseData, responseCode) = try await requestHelper!.makeRequestToMockAsync(requestPath: requestPath, method: .GET)!
+        let (responseData, responseCode) = try await requestHelper!.makeRequestToMockAsync(
+            requestPath: requestPath,
+            method: .GET)!
         XCTAssertNotNil(responseData)
         XCTAssertNotNil(responseCode)
 
