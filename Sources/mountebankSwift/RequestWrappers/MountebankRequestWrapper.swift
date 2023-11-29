@@ -37,7 +37,7 @@ class MountebankRequestWrapper {
 
         let (_, response) = try await URLSession.shared.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse else {
-            print("Invalid response recieved from server")
+            print(Constants.ExceptionMessages.invalidResponseRecievedFromServerMessage)
             return
         }
 
@@ -56,7 +56,7 @@ class MountebankRequestWrapper {
 
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse else {
-            print("Invalid response recieved from server")
+            print(Constants.ExceptionMessages.invalidResponseRecievedFromServerMessage)
             throw MountebankExceptions.unableToRetrieveImposters
         }
 
@@ -83,7 +83,7 @@ class MountebankRequestWrapper {
 
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse else {
-            print("Invalid response recieved from server")
+            print(Constants.ExceptionMessages.invalidResponseRecievedFromServerMessage)
             throw MountebankExceptions.unableToRetrieveImposter
         }
 

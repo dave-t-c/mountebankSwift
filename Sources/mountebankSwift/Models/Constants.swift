@@ -17,4 +17,8 @@ struct Constants {
     struct ResponseHeaders {
         static let defaultJsonResponseHeaders = ["content-Type": "application/json"]
     }
+
+    struct ExceptionMessages {
+        static let invalidResponseRecievedFromServerMessage: String = "Invalid response recieved from server"
+    }
 }
