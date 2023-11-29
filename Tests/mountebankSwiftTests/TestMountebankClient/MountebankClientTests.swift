@@ -131,4 +131,40 @@ final class MountebankClientTests: XCTestCase {
         let retrievedImposters = try await mountebankClient!.retrieveCreatedImpostersAsync()
         XCTAssertTrue(retrievedImposters.isEmpty)
     }
+
+    /// Retrieve an individual imposter
+    /// This will include requests etc made.
+    func testRetrieveImposter() async throws {
+        let expectedStatusCode: Int = 200
+        let expectedResponse: [Int] = [1, 2, 3]
+
+        try await mockHelper!.createBasicHttpMockAsync(
+            configuration: configuration,
+            mountebankClient: mountebankClient,
+            expectedStatusCode: expectedStatusCode,
+            expectedResponse: expectedResponse)
+
+        let requestPath = requestHelper!.buildRequestPath(
+            baseRequestPath: configuration!.baseRequestPath,
+            testPort: configuration!.defaultTestPort,
+            relativeRequestPath: configuration!.relativeRequestPath)
+
+        _ = try await requestHelper!.makeRequestToMockAsync(
+            requestPath: requestPath,
+            method: .GET)
+
+        let retrievedImposter = try await mountebankClient!.retrieveHttpImposterAsync(
+            port: configuration!.defaultTestPort)
+
+        XCTAssertNotNil(retrievedImposter)
+        XCTAssertEqual(true, retrievedImposter.recordRequests)
+        XCTAssertEqual(1, retrievedImposter.numberOfRequests)
+
+        let requestMade = retrievedImposter.requests[0]
+        XCTAssertEqual(.GET, requestMade.method)
+        XCTAssertEqual(configuration!.relativeRequestPath, requestMade.path)
+
+        // No body passed in to request, request body should be empty string
+        XCTAssertTrue(requestMade.body.isEmpty)
+    }
 }

@@ -5,13 +5,13 @@ A swift package for interacting with mountebank.
 
 ## Contents
 The package currently supports the following: 
-- Creating HttpImposters
+- Creating Http Imposters
 - Removing all created imposters
 - Retrieving all created imposters
+- Retrieving a Http Imposter including request information
 
 ## In the works
 Currently being planned / developed are:
-- Retrieving requests made to an endpoint
 - Creating helpers to make creating request and response bodies easier
 - Creating a `mockEndpoint` to make it easier to track requests.
 
@@ -134,3 +134,13 @@ func retrieveCreatedImposters() async throws {
 For each imposter, this will return the `port`, `protocol` and `numberOfRequests`.
 
 *Please note*: requests are not currently recorded but this will be included in a later version.
+
+### Retrieving a specific Http imposter
+To retrieve a specifc Http imposter from a given port, use: 
+```swift
+func retrieveHttpImposter() async throws {
+    let mountebankClient = MountebankClient(mountebankUrl: "http://localhost:2525")
+    let retrievedImposter = try await mountebankClient.retrieveHttpImposterAsync(port: 2526)
+}
+```
+This will include detail for all requests made to this imposter.

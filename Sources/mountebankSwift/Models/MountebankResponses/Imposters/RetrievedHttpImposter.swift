@@ -1,5 +1,5 @@
 //
-//  RetrievedImposter.swift
+//  RetrievedHttpImposter.swift
 //
 //
 //  Created by David Cook on 29/11/2023.
@@ -7,16 +7,16 @@
 
 import Foundation
 
-class RetrievedImposter: SimpleRetrievedImposter {
-    var recordRequests: Bool
+class RetrievedHttpImposter: RetrievedImposter {
+    var requests: [HttpRequest]
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.recordRequests = try container.decode(Bool.self, forKey: .recordRequests)
+        self.requests = try container.decode([HttpRequest].self, forKey: .requests)
         try super.init(from: decoder)
     }
 
     private enum CodingKeys: String, CodingKey {
-        case recordRequests
+        case requests
     }
 }

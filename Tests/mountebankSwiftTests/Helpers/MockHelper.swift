@@ -30,6 +30,9 @@ class MockHelper {
         let responses = [response]
         let httpStub = HttpStub(predicates: predicates, responses: responses)
         let httpStubs = [httpStub]
-        try await mountebankClient?.createHttpImposterAsync(port: configuration!.defaultTestPort, stubs: httpStubs)
+        try await mountebankClient?.createHttpImposterAsync(
+            port: configuration!.defaultTestPort,
+            stubs: httpStubs,
+            name: "Example Imposter")
     }
 }
