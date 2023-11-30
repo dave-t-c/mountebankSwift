@@ -11,9 +11,15 @@ on:
 
 jobs:
   build:
-
     runs-on: macos-13
-
+    strategy:
+      matrix:
+        platform: [
+          'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.0',
+          'platform=tvOS Simulator,name=Apple TV 4K (3rd generation),OS=16.0',
+          'platform=watchOS Simulator,name=Apple Watch Ultra (49mm),OS=9.0',
+          'platform=OS X,arch=x86_64'
+        ]
     steps:
     - uses: actions/checkout@v3
     - name: Install Requirements
@@ -32,4 +38,4 @@ jobs:
     - name: List available devices
       run: xcrun simctl list devicetypes 
     - name: Build and run tests
-      run: xcodebuild test -scheme mountebankSwift  -destination 'platform=iOS Simulator,name=iPhone 14 Pro'
+      run: xcodebuild test -scheme mountebankSwift  -destination ${{ matrix.platform  }}
