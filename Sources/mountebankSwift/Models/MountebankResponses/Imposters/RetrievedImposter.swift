@@ -8,7 +8,7 @@
 import Foundation
 
 public class RetrievedImposter: SimpleRetrievedImposter {
-    var recordRequests: Bool
+    public var recordRequests: Bool
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -7,12 +7,12 @@
 
 import Foundation
 
-class HttpImposter: Imposter {
-    let port: Int
-    let requestProtocol: String = "http"
-    let stubs: [HttpStub]
-    let recordRequests: Bool
-    let name: String?
+public class HttpImposter: Imposter {
+    public let port: Int
+    public let requestProtocol: String = "http"
+    public let stubs: [HttpStub]
+    public let recordRequests: Bool
+    public let name: String?
 
     init(port: Int, stubs: [HttpStub], recordRequests: Bool = true, name: String? = nil) {
         self.port = port

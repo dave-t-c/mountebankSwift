@@ -8,7 +8,7 @@
 import Foundation
 
 public class RetrievedHttpImposter: RetrievedImposter {
-    var requests: [HttpRequest]
+    public var requests: [HttpRequest]
 
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

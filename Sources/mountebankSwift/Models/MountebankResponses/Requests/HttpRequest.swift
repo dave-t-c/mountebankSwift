@@ -9,7 +9,7 @@ import Foundation
 
 /// Models a HttpRequest made to mountebank
 ///
-class HttpRequest: Codable {
+public class HttpRequest: Codable {
     var path: String
     var body: String
     var method: HttpMethod
