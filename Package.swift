@@ -7,17 +7,16 @@ let package = Package(
     name: "mountebankSwift",
     platforms: [
             .iOS(.v16),
-            .macOS(.v13)
+            .macOS(.v13),
+            .tvOS(.v16),
+            .watchOS(.v9)
         ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "mountebankSwift",
             targets: ["mountebankSwift"])
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "mountebankSwift"),
         .testTarget(
