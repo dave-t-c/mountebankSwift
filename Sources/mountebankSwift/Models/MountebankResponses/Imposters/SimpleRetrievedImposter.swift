@@ -7,12 +7,12 @@
 
 import Foundation
 
-class SimpleRetrievedImposter: Codable {
-    var port: Int
-    var requestProtocol: String
-    var numberOfRequests: Int
+public class SimpleRetrievedImposter: Codable {
+    public var port: Int
+    public var requestProtocol: String
+    public var numberOfRequests: Int
 
-    init(port: Int, requestProtocol: String, numberOfRequests: Int, recordRequests: Bool) {
+    public init(port: Int, requestProtocol: String, numberOfRequests: Int, recordRequests: Bool) {
         self.port = port
         self.requestProtocol = requestProtocol
         self.numberOfRequests = numberOfRequests

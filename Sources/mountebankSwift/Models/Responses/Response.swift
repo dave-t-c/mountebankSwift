@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol Response: Codable {
+public protocol Response: Codable {
 
 }

@@ -7,12 +7,12 @@
 
 import Foundation
 
-class HttpResponseFields: ResponseFields {
-    let statusCode: Int
-    let headers: [String: String]?
-    var body: String?
+public class HttpResponseFields: ResponseFields {
+    public var statusCode: Int
+    public var headers: [String: String]?
+    public var body: String?
 
-    init(statusCode: Int, headers: [String: String]? = nil, body: String? = nil) {
+    public init(statusCode: Int, headers: [String: String]? = nil, body: String? = nil) {
         self.statusCode = statusCode
         self.headers = headers
         self.body = body

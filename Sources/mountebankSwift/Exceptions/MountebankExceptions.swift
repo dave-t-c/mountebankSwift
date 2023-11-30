@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MountebankExceptions: Error {
+public enum MountebankExceptions: Error {
     /// Unable to create the imposter
     case unableToCreateImposter
     /// Unable to retrieve the created imposters

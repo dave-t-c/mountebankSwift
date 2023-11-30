@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol Predicate: Codable {
+public protocol Predicate: Codable {
 
 }

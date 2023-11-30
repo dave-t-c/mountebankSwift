@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MountebankRequestWrapper {
+internal class MountebankRequestWrapper {
     var mountebankUrl: String
 
     init(mountebankUrl: String) {

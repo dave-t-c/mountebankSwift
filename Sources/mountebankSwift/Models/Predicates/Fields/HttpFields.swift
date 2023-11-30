@@ -7,12 +7,12 @@
 
 import Foundation
 
-class HttpFields: Fields {
-    let path: String
-    let method: String
-    let body: String?
+public class HttpFields: Fields {
+    public var path: String
+    public var method: String
+    public var body: String?
 
-    init(path: String, method: HttpMethod, body: String? = nil) {
+    public init(path: String, method: HttpMethod, body: String? = nil) {
         self.path = path
         self.method = String(describing: method)
         self.body = body

@@ -9,11 +9,11 @@ import Foundation
 
 /// Models a HttpRequest made to mountebank
 ///
-class HttpRequest: Codable {
-    var path: String
-    var body: String
-    var method: HttpMethod
-    var headers: [String: String]
+public class HttpRequest: Codable {
+    public let path: String
+    public let body: String
+    public let method: HttpMethod
+    public let headers: [String: String]
 
     init(path: String, body: String, method: HttpMethod, headers: [String: String]) {
         self.path = path

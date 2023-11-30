@@ -7,5 +7,5 @@
 
 import Foundation
 
-protocol Imposter: Codable {
+public protocol Imposter: Codable {
 }

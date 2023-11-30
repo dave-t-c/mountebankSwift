@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Constants {
+internal struct Constants {
     struct ResponseCodes {
         static let successCreateImposterStatusCode: Int = 201
         static let successRetrieveImpostersStatusCode: Int = 200
