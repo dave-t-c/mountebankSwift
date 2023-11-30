@@ -8,9 +8,9 @@
 import Foundation
 
 public class HttpResponseFields: ResponseFields {
-    let statusCode: Int
-    let headers: [String: String]?
-    var body: String?
+    public var statusCode: Int
+    public var headers: [String: String]?
+    public var body: String?
 
     public init(statusCode: Int, headers: [String: String]? = nil, body: String? = nil) {
         self.statusCode = statusCode

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol Fields: Codable {
+public protocol Fields: Codable {
 
 }

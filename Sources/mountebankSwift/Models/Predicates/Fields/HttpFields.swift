@@ -8,9 +8,9 @@
 import Foundation
 
 public class HttpFields: Fields {
-    let path: String
-    let method: String
-    let body: String?
+    public var path: String
+    public var method: String
+    public var body: String?
 
     public init(path: String, method: HttpMethod, body: String? = nil) {
         self.path = path

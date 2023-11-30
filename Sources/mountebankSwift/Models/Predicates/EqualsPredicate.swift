@@ -8,7 +8,7 @@
 import Foundation
 
 public class EqualsPredicate: Predicate {
-    let equals: HttpFields
+    public let equals: HttpFields
 
     public init(equals: HttpFields) {
         self.equals = equals
