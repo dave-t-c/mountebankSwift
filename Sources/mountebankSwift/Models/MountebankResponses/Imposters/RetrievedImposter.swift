@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RetrievedImposter: SimpleRetrievedImposter {
+public class RetrievedImposter: SimpleRetrievedImposter {
     var recordRequests: Bool
 
     required init(from decoder: Decoder) throws {

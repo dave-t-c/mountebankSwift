@@ -7,11 +7,11 @@
 
 import Foundation
 
-class HttpStub: Stub {
+public class HttpStub: Stub {
     let predicates: [EqualsPredicate]
     let responses: [IsResponse]
 
-    init(predicates: [EqualsPredicate], responses: [IsResponse]) {
+    public init(predicates: [EqualsPredicate], responses: [IsResponse]) {
         self.predicates = predicates
         self.responses = responses
     }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol ResponseFields: Codable {
+public protocol ResponseFields: Codable {
 
 }

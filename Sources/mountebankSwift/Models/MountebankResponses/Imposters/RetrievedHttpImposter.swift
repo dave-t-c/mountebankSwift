@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RetrievedHttpImposter: RetrievedImposter {
+public class RetrievedHttpImposter: RetrievedImposter {
     var requests: [HttpRequest]
 
     required init(from decoder: Decoder) throws {

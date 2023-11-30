@@ -7,10 +7,10 @@
 
 import Foundation
 
-class IsResponse: Response {
+public class IsResponse: Response {
     let isResponse: HttpResponseFields
 
-    init(isResponse: HttpResponseFields) {
+    public init(isResponse: HttpResponseFields) {
         self.isResponse = isResponse
     }
 
