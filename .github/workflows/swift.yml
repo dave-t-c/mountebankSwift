@@ -30,10 +30,10 @@ jobs:
     - name: List available devices
       run: xcrun simctl list devicetypes 
     - name: Build and run tests (iOS)
-      run: xcodebuild test -scheme mountebankSwift  -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.0'
+      run: xcodebuild test -scheme mountebankSwift -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.0'
     - name: Build and run tests (tvOS)
-      run: xcodebuild test -scheme mountebankSwift  -destination 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation),OS=16.0'
+      run: xcodebuild test -scheme mountebankSwift -destination 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation),OS=16.0'
     - name: Build and run tests (watchOS)
-      run: xcodebuild test -scheme mountebankSwift  -destination 'platform=watchOS Simulator,name=Apple Watch Ultra (49mm),OS=9.0'
+      run: xcodebuild test -scheme mountebankSwift -destination 'platform=watchOS Simulator,name=Apple Watch Ultra (49mm),OS=9.0'
     - name: Build and run tests (macOS)
-      run: xcodebuild test -scheme mountebankSwift  -destination 'platform=OS X,arch=x86_64'
+      run: xcodebuild test -scheme mountebankSwift -destination 'platform=OS X,arch=x86_64'
