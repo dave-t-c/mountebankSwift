@@ -14,13 +14,16 @@ jobs:
     runs-on: macos-13
     steps:
     - uses: actions/checkout@v3
+    - name: Get swift version
+      run: swift --version
+    - name: Swift build
+      run: swift build
     - name: Install Requirements
       run: |
         brew install docker
         brew install docker-compose
         brew install colima
-    - name: Get swift version
-      run: swift --version
+    
     - name: Xcode version
       run: xcodebuild -version
     - name: Start colima
