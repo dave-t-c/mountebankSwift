@@ -1,6 +1,6 @@
 {
-    "baseRequestPath": "http://localhost",
+    "baseRequestPath": "http://127.0.0.1",
     "relativeRequestPath": "/v1/test",
-    "mountebankUrl": "http://localhost:2525",
+    "mountebankUrl": "http://127.0.0.1:2525",
     "defaultTestPort": 2526
 }
