@@ -30,6 +30,8 @@ jobs:
       run: colima start
     - name: Start docker container
       run: docker-compose up -d
+    - name: Swift Test
+      run: swift test
     - name: List available devices
       run: xcrun simctl list devicetypes 
     - name: Build and run tests (iOS)
