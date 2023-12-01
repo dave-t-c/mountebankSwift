@@ -2,6 +2,9 @@
 
 A swift package for interacting with mountebank.
 
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fdave-t-c%2FmountebankSwift%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/dave-t-c/mountebankSwift)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fdave-t-c%2FmountebankSwift%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/dave-t-c/mountebankSwift)
+
 
 ## Contents
 The package currently supports the following: 
