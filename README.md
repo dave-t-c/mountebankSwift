@@ -2,12 +2,6 @@
 
 A swift package for interacting with mountebank.
 
-[![Swift package index swift compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fdave-t-c%2FmountebankSwift%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/dave-t-c/mountebankSwift)
-[![Swift package index platform compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fdave-t-c%2FmountebankSwift%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/dave-t-c/mountebankSwift)
-
-![Swift lint status](https://github.com/dave-t-c/mountebankSwift/actions/workflows/swift-lint.yml/badge.svg)
-![Swift build and test status](https://github.com/dave-t-c/mountebankSwift/actions/workflows/swift.yml/badge.svg)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=dave-t-c_mountebankSwift&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=dave-t-c_mountebankSwift)
 
 ## Contents
 The package currently supports the following: 
